@@ -13,17 +13,17 @@ router.route('/users').get((req, res) => {
 
 router.route('/users/new').post((req, res) => {
   User.register(
-    new User({ username : req.body.username, email: req.body.email }),
+    new User({ username: req.body.username, email: req.body.email }),
     req.body.password,
     (err, user, token) => {
       if (err) {
         res.status(422).json(err);
       } else {
-        var authUrl = 'https://www.chessx.io/verify?authToken='+ token;
-        sendgrid.API(emailConfirm(user.email, authUrl), function(err, json) {
+        var authUrl = 'https://www.chessx.io/verify?authToken=' + token;
+        sendgrid.API(emailConfirm(user.email, authUrl), function (err, json) {
           if (err) {
-            Auth.remove({user: user._id}, function() {
-              User.findByIdAndRemove(user._id, function() {
+            Auth.remove({ user: user._id }, function () {
+              User.findByIdAndRemove(user._id, function () {
                 res.status(422).json(err);
               });
             });
@@ -34,22 +34,22 @@ router.route('/users/new').post((req, res) => {
   );
 });
 
-router.route('/verify_email').post(function(req, res) {
-  User.verifyEmail(req.body.authToken, function(err, user) {
+router.route('/verify_email').post(function (req, res) {
+  User.verifyEmail(req.body.authToken, function (err, user) {
     if (err) res.status(422).json(err);
     else res.status(200).json('Email verified!');
   });
 });
 
-router.route('/send_reset_email').post(function(req, res) {
+router.route('/send_reset_email').post(function (req, res) {
   if (!req.body.email) return res.status(401).json('Email required');
-  User.findOne({email: req.body.email}, function(err, user) {
+  User.findOne({ email: req.body.email }, function (err, user) {
     if (err) return res.status(422).json(err);
     if (!user) return res.status(404).json('Email not found');
 
-    user.setAuthToken(function(err, user, token) {
+    user.setAuthToken(function (err, user, token) {
       var authUrl = 'https://www.chessx.io/reset?authToken=' + token;
-      sendgrid.API(emailReset(user.email, authUrl), function(err, json) {
+      sendgrid.API(emailReset(user.email, authUrl), function (err, json) {
         if (err) return res.status(422).json(err);
         res.status(200).json('Password reset email sent!');
       });
@@ -57,8 +57,8 @@ router.route('/send_reset_email').post(function(req, res) {
   });
 });
 
-router.route('/verify_reset').post(function(req, res) {
-  User.verifyReset(req.body, function(err, user) {
+router.route('/verify_reset').post(function (req, res) {
+  User.verifyReset(req.body, function (err, user) {
     if (err) return res.status(422).json(err);
     if (!user) return res.status(401).json('Invalid password reset');
     res.status(200).json('Password reset!');
