@@ -92,30 +92,10 @@
     background-color: $dark-1;
   }
 
-  &.natural-board {
-    .white-square {
-      background-color: $natural-white;
-    }
-    .black-square {
-      background-color: $natural-black;
-    }
+  .white-square {
+    background-color: $cool-white;
   }
-
-  &.cool-board {
-    .white-square {
-      background-color: $cool-white;
-    }
-    .black-square {
-      background-color: $cool-black;
-    }
-  }
-
-  &.storm-board {
-    .white-square {
-      background-color: $storm-white;
-    }
-    .black-square {
-      background-color: $storm-black;
-    }
+  .black-square {
+    background-color: $cool-black;
   }
 }

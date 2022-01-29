@@ -1,5 +1,5 @@
 import React from 'react';
-import {browserHistory} from 'react-router';
+import { browserHistory } from 'react-router';
 import ErrorUtil from '../../utils/error_util';
 import GameSubscription from '../../sockets/game_subscription';
 import GameActions from '../../actions/game_actions';
@@ -35,16 +35,16 @@ class Game extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    this.setState({currentUser: props.currentUser});
+    this.setState({ currentUser: props.currentUser });
   }
 
   componentDidMount() {
     GameStore.addChangeListener(this.getGame);
-    GameSubscription.join(this.state.gameId ,this.rejected);
+    GameSubscription.join(this.state.gameId, this.rejected);
   }
 
   getGame() {
-    this.setState({game: GameStore.get()});
+    this.setState({ game: GameStore.get() });
   }
 
   componentWillUnmount() {
@@ -61,17 +61,13 @@ class Game extends React.Component {
       ErrorUtil.loginRequired(data);
   }
 
-  openGameSettings() {
-    $('#game-settings-modal').openModal();
-  }
-
   playerStatus() {
     var game = this.state.game, user = this.state.currentUser;
     if (game && user) {
       if (game.white && game.white._id === this.state.currentUser._id)
-      return 'white';
+        return 'white';
       else if (game.black && game.black._id === this.state.currentUser._id)
-      return 'black';
+        return 'black';
     }
 
     return 'spectator';
@@ -83,12 +79,12 @@ class Game extends React.Component {
 
   topCard() {
     if (!this.state.game) return {};
-    return this.whiteOnBottom() ?  this.card('black') : this.card('white');
+    return this.whiteOnBottom() ? this.card('black') : this.card('white');
   }
 
   botCard() {
     if (!this.state.game) return {};
-    return this.whiteOnBottom() ?  this.card('white') : this.card('black');
+    return this.whiteOnBottom() ? this.card('white') : this.card('black');
   }
 
   card(color) {
@@ -117,23 +113,17 @@ class Game extends React.Component {
 
     return (
       <div id='game-wrapper'>
-        <div className='settings secondary-content'>
-          <a onClick={this.openGameSettings}
-          className="waves-effect btn modal-trigger btn-flat">
-            <i className="material-icons settings-icon">settings</i>
-          </a>
-        </div>
         <section id='game' className='no-select'>
           {this.renderReplay()}
           <Player data={this.topCard()} />
           <div id='board-wrapper'>
-            <Overlay status={this.status()} winner={this.winner()}/>
+            <Overlay status={this.status()} winner={this.winner()} />
             <Pieces status={this.status()} playerStatus={this.playerStatus()} />
             <Board />
           </div>
           <Player data={this.botCard()} />
         </section>
-        <Chat white={game.white} black={game.black} gameId={this.state.gameId}/>
+        <Chat white={game.white} black={game.black} gameId={this.state.gameId} />
       </div>
     );
   }

@@ -16,11 +16,6 @@
   }
 }
 
-.settings {
-  display: flex;
-  justify-content: flex-end;
-}
-
 #game{
   cursor: default;
   .square {
@@ -42,47 +37,6 @@
     }
     .sit-btn {
       margin: -0.5rem 0;
-    }
-  }
-
-  #game-settings-modal {
-    max-width: 480px;
-    .preview {
-      float: right;
-      width: 84px;
-      height: 50px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: row;
-      .light, .dark {
-        margin: 0.5em 0.5em 0.5em 0;
-        display: inline-flex;
-        flex: 1 1 50%;
-      }
-    }
-    .cool {
-      .light {
-        background-color: $cool-white;
-      }
-      .dark {
-        background-color: $cool-black;
-      }
-    }
-    .natural {
-      .light {
-        background-color: $natural-white;
-      }
-      .dark {
-        background-color: $natural-black;
-      }
-    }
-    .storm {
-      .light {
-        background-color: $storm-white;
-      }
-      .dark {
-        background-color: $storm-black;
-      }
     }
   }
 }

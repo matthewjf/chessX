@@ -7,7 +7,7 @@ class About extends React.Component {
     $('#signup-modal').openModal();
   }
   componentDidMount() {
-    $(document).ready(function(){
+    $(document).ready(function () {
       $('.scrollspy').scrollSpy();
     });
   }
@@ -26,12 +26,12 @@ class About extends React.Component {
               The game ends when either king is captured or 10 minutes elapses.
               Games are meant to be fast and furious, not afternoon tea.
             </p>
-            <img src="/images/gameplay.gif"/>
+            <img src="/images/gameplay.gif" />
             <h3>History</h3>
             <p>
               ChessX is an attempt to recreate <a href='https://en.wikipedia.org/wiki/Kung-Fu_Chess'>Kung-Fu Chess</a>.
               There are other versions of the game, which you can find <a href='https://en.wikipedia.org/wiki/Kung-Fu_Chess#Other_Projects'>
-              here</a>. The most popular alternative that's available today is built
+                here</a>. The most popular alternative that's available today is built
               on silverlight, which has limited browser support and is being phased out.
             </p>
           </div>
@@ -53,7 +53,7 @@ class About extends React.Component {
               You can also start a game with the <code className='code-btn'>new game</code> button on the home page.
               Click <code className='code-btn'>create</code> to start a multiplayer game, or <code>single player</code> to play against the computer.
             </p>
-            <img src="/images/newgame.png"/>
+            <img src="/images/newgame.png" />
             <h3>Spectate</h3>
             <p>
               If you're not sure what to do, try watching a game.
@@ -78,7 +78,7 @@ class About extends React.Component {
               The positions available to that piece will be highlighted in green.
               Click on any of the available positions to perform a move.
             </p>
-            <img src="/images/moves.png"/>
+            <img src="/images/moves.png" />
             <p>
               Pieces can be intercepted during their move.
               If a piece takes another piece in the middle of its move, its move will end.
@@ -119,14 +119,7 @@ class About extends React.Component {
               Once a game ends, you get access to the replay feature.
               You can play back the entire game or skip to just the parts you want.
             </p>
-            <img src="/images/replay.gif"/>
-            <h3>Settings</h3>
-            <p>
-              When you're in a game, you can change the board settings by clicking
-              the <i className="material-icons settings-icon">settings</i> icon
-              in the upper right hand corner.
-            </p>
-            <img src="/images/settings.png"/>
+            <img src="/images/replay.gif" />
           </div>
 
           <div id="contact" className="section scrollspy">

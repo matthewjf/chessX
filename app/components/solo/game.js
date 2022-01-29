@@ -40,16 +40,10 @@ class Solo extends Game {
 
     return (
       <div id='game-wrapper'>
-        <div className='settings secondary-content'>
-          <a onClick={this.openGameSettings}
-          className="waves-effect btn modal-trigger btn-flat">
-            <i className="material-icons settings-icon">settings</i>
-          </a>
-        </div>
         <section id='game' className='no-select'>
           <Player data={this.topCard()} />
           <div id='board-wrapper'>
-            <Overlay status={this.status()} winner={this.winner()}/>
+            <Overlay status={this.status()} winner={this.winner()} />
             <SoloPieces status={this.status()} playerStatus={this.playerStatus()} />
             <Board />
           </div>
