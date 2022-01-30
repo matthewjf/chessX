@@ -16,7 +16,7 @@ class Computer {
   start() {
     this.state = PieceStore.get();
     PieceStore.addChangeListener(this.getState.bind(this));
-    this.moveInterval = setInterval(function() {
+    this.moveInterval = setInterval(function () {
       this.setMoves();
       this.protectKing();
       this.makeMove();
@@ -59,7 +59,7 @@ class Computer {
     for (var pieceId in pieces) {
       this.moves[pieceId] = Board.getMoves(pieceId, this.state);
 
-      Piece.getMoves(pieceId, this.state, true).forEach(function(move) {
+      Piece.getMoves(pieceId, this.state, true).forEach(function (move) {
         this.targets[move[0]][move[1]].push(pieceId);
       }.bind(this));
     }
@@ -67,20 +67,20 @@ class Computer {
 
   isSafe(pos) {
     var pieceIds = this.targets[pos[0]][pos[1]];
-    return pieceIds.length === 0 || pieceIds.every(function(id) {
+    return pieceIds.length === 0 || pieceIds.every(function (id) {
       return this.isOwnPiece(id);
     }.bind(this));
   }
 
   isProtected(pos) {
     var pieceIds = this.targets[pos[0]][pos[1]];
-    return pieceIds.length === 0 || pieceIds.some(function(id) {
+    return pieceIds.length === 0 || pieceIds.some(function (id) {
       return this.isOwnPiece(id);
     }.bind(this));
   }
 
   piecesCanTake(pos) {
-    return this.targets[pos[0]][pos[1]].filter(function(id) {
+    return this.targets[pos[0]][pos[1]].filter(function (id) {
       let attacking = this.pieces()[id];
       return this.isOwnPiece(id) && attacking && attacking.status == 0;
     }.bind(this));
@@ -104,7 +104,7 @@ class Computer {
           if (target) {
             var moveValue = this.moveValue(pieceId, target);
             if (moveValue > maxValue) {
-              move = {id: pieceId, target: target};
+              move = { id: pieceId, target: target };
               maxValue = moveValue;
             }
           }
@@ -164,7 +164,7 @@ class Computer {
       if (protectingMoves && protectingMoves.length > 0)
         this.performMoves(protectingMoves);
       else if (king.status === 0 && safePos) {
-        this.performMove({id: king.id, target: safePos});
+        this.performMove({ id: king.id, target: safePos });
       }
     }
   }
@@ -175,7 +175,7 @@ class Computer {
 
   kingThreats() {
     var kingPos = this.getKing().pos;
-    return this.targets[kingPos[0]][kingPos[1]].filter(function(id) {
+    return this.targets[kingPos[0]][kingPos[1]].filter(function (id) {
       return !this.isOwnPiece(id);
     }.bind(this));
   }
@@ -199,7 +199,7 @@ class Computer {
           if (j == this.getKing().id) continue;
           if (takingIds.has(takingPieces[j])) continue;
           takingIds.add(takingPieces[j]);
-          moves.push({id: takingPieces[j], target: threat.pos});
+          moves.push({ id: takingPieces[j], target: threat.pos });
           break;
         }
       };
